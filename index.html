@@ -5,43 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STUDIO LS - Estilo e Qualidade</title>
     
-    <!-- Carrega o Tailwind CSS para um design moderno e responsivo -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Ícones Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* Variáveis de Cores */
+        /* Variáveis de Cores ATUALIZADAS: Preto e Amarelo Forte */
         :root {
-            --bg-dark: #262626; /* Preto/Verde Oliva Escuro do design */
-            --primary-gold: #A48D55; /* Dourado/Bronze de destaque */
-            --light-gold-text: #D4AF37; /* Dourado mais claro para o texto STUDIO LS */
-            --text-light: #f3f4f6;
+            --bg-dark: #000000; /* Preto Puro */
+            --primary-yellow: #FFD700; /* Amarelo Forte / Ouro */
+            --light-yellow-text: #FFFF00; /* Amarelo mais vibrante para texto de destaque */
+            --text-light: #f3f4f6; /* Cinza Claro */
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            /* Mudei a fonte para Poppins - Profissional e limpa */
+            font-family: 'Poppins', sans-serif; 
             background-color: var(--bg-dark);
             color: var(--text-light);
         }
         
-        /* Estilização padrão para o botão dourado */
-        .gold-btn {
-            background-color: var(--primary-gold);
-            color: var(--bg-dark);
+        /* Estilização padrão para o botão amarelo */
+        .yellow-btn {
+            background-color: var(--primary-yellow);
+            color: var(--bg-dark); /* Texto preto */
             transition: all 0.2s ease-in-out; 
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.6), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
             -webkit-tap-highlight-color: transparent;
         }
 
-        .gold-btn:hover {
+        .yellow-btn:hover {
             opacity: 0.9;
             transform: translateY(-2px);
         }
         
         /* Efeito de clique/toque ATIVO */
-        .gold-btn:active {
+        .yellow-btn:active {
             transform: scale(0.98); 
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5), 0 1px 2px -1px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.7), 0 1px 2px -1px rgba(0, 0, 0, 0.4);
         }
 
         /* Animação de entrada da Landing Page */
@@ -55,14 +56,15 @@
             transition: opacity 1s ease-out, transform 0.8s ease-out;
         }
         
-        /* Estilo para a imagem principal */
+        /* Estilo para a imagem principal (Banner mais chamativo) */
         .image-container {
             width: 100%;
             height: auto;
             max-height: 400px;
             overflow: hidden;
             border-radius: 1.5rem; 
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4); /* Sombra amarela */
+            border: 3px solid var(--primary-yellow); /* Borda amarela */
         }
         .image-container img {
             width: 100%;
@@ -77,18 +79,18 @@
             justify-content: space-between;
             align-items: center;
             padding: 0.75rem 1rem;
-            background-color: #363636;
+            background-color: #1a1a1a;
             border-radius: 0.5rem;
-            border-left: 4px solid var(--primary-gold);
+            border-left: 4px solid var(--primary-yellow); /* Cor de destaque */
         }
         
         /* Estilo para o item de PRODUTO/CERVEJA (card com imagem) */
         .product-card {
             text-align: center;
             padding: 1rem;
-            background-color: #1a1a1a; 
+            background-color: #111111; 
             border-radius: 0.75rem;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -107,7 +109,7 @@
             justify-content: center;
             margin-bottom: 0.5rem;
             border-radius: 0.5rem;
-            background-color: #1a1a1a; 
+            background-color: #111111; 
             overflow: hidden; 
         }
         
@@ -143,145 +145,116 @@
 </head>
 <body class="min-h-screen flex items-start justify-center p-6 sm:p-8">
 
-    <!-- Container Principal do Aplicativo/Landing Page -->
     <div id="main-container" class="w-full max-w-sm mx-auto pt-10 pb-8 initial-hidden"> 
         
-        <!-- 1. Cabeçalho e Logo -->
         <header class="text-center mb-12">
             
-            <!-- SUA LOGO EM PNG AQUI -->
             <div class="mb-3">
-                <!-- Certifique-se de que o arquivo 'logo.png' está no repositório! -->
                 <img id="main-logo" src="./logo.png" alt="Logo STUDIO LS" 
-                     class="w-24 h-24 mx-auto rounded-full object-cover border-2 p-1"
-                     style="border-color: var(--primary-gold);" /* Aro dourado */
-                     onerror="this.onerror=null; this.src='https://placehold.co/96x96/262626/A48D55?text=LOGO';"
+                     class="w-24 h-24 mx-auto rounded-full object-cover border-4 p-1"
+                     style="border-color: var(--primary-yellow);" 
+                     onerror="this.onerror=null; this.src='https://placehold.co/96x96/000000/FFD700?text=LOGO';"
                      title="Logo STUDIO LS">
             </div>
             
-            <!-- Nome com dourado mais claro e fonte mais grossa -->
-            <h1 class="text-3xl font-extrabold tracking-widest" style="color: var(--light-gold-text);"> 
+            <h1 class="text-4xl font-extrabold tracking-widest" style="color: var(--light-yellow-text);"> 
                 STUDIO LS
             </h1>
-            <p class="text-sm font-light uppercase mt-1 tracking-wide" style="color: var(--primary-gold);">
+            <p class="text-base font-light uppercase mt-1 tracking-widest" style="color: var(--primary-yellow);">
                 ESTILO E QUALIDADE EM UM SÓ LUGAR
             </p>
         </header>
 
-        <!-- 2. Seção de Botões de Ação (Ações principais) -->
         <main id="main-actions" class="space-y-5"> 
 
-            <!-- Botão: AGENDAR HORÁRIO (WhatsApp) -->
-            <a id="whatsapp-link" href="#" target="_blank"
-               class="gold-btn w-full flex items-center justify-center p-3.5 rounded-full font-bold text-base uppercase shadow-lg">
+            <a id="whatsapp-link" href="https://studiols-agendamento.netlify.app/" target="_blank"
+               class="yellow-btn w-full flex items-center justify-center p-3.5 rounded-full font-bold text-base uppercase shadow-lg">
                 <i data-lucide="calendar-check" class="w-5 h-5 mr-3"></i>
                 AGENDAR HORÁRIO
             </a>
 
-            <!-- Botão: COMO CHEGAR (Google Maps) -->
             <a id="maps-link" href="#" target="_blank"
-               class="gold-btn w-full flex items-center justify-center p-3.5 rounded-full font-bold text-base uppercase shadow-lg">
+               class="yellow-btn w-full flex items-center justify-center p-3.5 rounded-full font-bold text-base uppercase shadow-lg">
                 <i data-lucide="map-pin" class="w-5 h-5 mr-3"></i>
                 COMO CHEGAR
             </a>
 
-            <!-- Botão: TABELA DE PREÇOS (Abre Modal/Nova Seção) -->
             <button onclick="openPricesModal()"
-                    class="gold-btn w-full flex items-center justify-center p-3.5 rounded-full font-bold text-base uppercase shadow-lg">
+                    class="yellow-btn w-full flex items-center justify-center p-3.5 rounded-full font-bold text-base uppercase shadow-lg">
                 <i data-lucide="book-open-text" class="w-5 h-5 mr-3"></i>
-                TABELA DE PREÇOS
+                SERVIÇOS E PREÇOS
             </button>
 
-            <!-- Botão: INSTAGRAM -->
             <a id="instagram-link" href="#" target="_blank"
-               class="gold-btn w-full flex items-center justify-center p-3.5 rounded-full font-bold text-base uppercase shadow-lg">
+               class="yellow-btn w-full flex items-center justify-center p-3.5 rounded-full font-bold text-base uppercase shadow-lg">
                 <i data-lucide="instagram" class="w-5 h-5 mr-3"></i>
                 INSTAGRAM
             </a>
 
         </main>
         
-        <!-- 3. Imagem da Barbearia (Abaixo dos botões) -->
         <section class="mt-12">
             <div class="image-container">
-                <!-- Certifique-se de que o arquivo 'barber_shop.png' está no repositório! -->
                 <img src="./barber_shop.png" 
-                     onerror="this.onerror=null;this.src='https://placehold.co/600x400/363636/A48D55?text=Studio+LS+Ambiente';"
+                     onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/FFD700?text=Studio+LS+Ambiente';"
                      alt="Imagem do ambiente interno da Studio LS Barbearia.">
             </div>
         </section>
 
     </div>
 
-    <!-- Modal/Seção de Tabela de Preços e Produtos -->
-    <div id="prices-modal" class="hidden fixed inset-0 z-50 bg-black bg-opacity-90 flex items-start justify-center p-4 overflow-y-auto">
+    <div id="prices-modal" class="hidden fixed inset-0 z-50 bg-black bg-opacity-95 flex items-start justify-center p-4 overflow-y-auto">
         
-        <div class="w-full max-w-xl mx-auto my-8 p-6 sm:p-8 rounded-xl shadow-2xl relative" style="background-color: #1a1a1a;">
-            <!-- Botão de Fechar -->
+        <div class="w-full max-w-xl mx-auto my-8 p-6 sm:p-8 rounded-xl shadow-2xl relative" style="background-color: #111111;">
             <button onclick="closePricesModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition duration-200">
                 <i data-lucide="x" class="w-8 h-8"></i>
             </button>
 
-            <h2 class="text-4xl font-bold mb-8 text-center" style="color: var(--primary-gold);">
+            <h2 class="text-4xl font-bold mb-8 text-center" style="color: var(--primary-yellow);">
                 TABELA DE VALORES
             </h2>
 
-            <!-- CONTEÚDO DA TABELA DE PREÇOS -->
             <div id="prices-content" class="space-y-10">
                 
-                <!-- Seção 1: Serviços (Lista lateral, como na sua imagem) -->
                 <section>
-                    <h3 class="text-2xl font-semibold mb-5 border-b pb-2 flex items-center" style="border-color: rgba(164, 141, 85, 0.4);">
-                        <i data-lucide="scissors" class="w-6 h-6 mr-3 inline-block" style="color: var(--primary-gold);"></i>
+                    <h3 class="text-2xl font-semibold mb-5 border-b pb-2 flex items-center" style="border-color: rgba(255, 215, 0, 0.4);">
+                        <i data-lucide="scissors" class="w-6 h-6 mr-3 inline-block" style="color: var(--primary-yellow);"></i>
                         SERVIÇOS
                     </h3>
                     <div class="space-y-3" id="services-list">
-                        <!-- Itens de serviço serão gerados aqui via JavaScript -->
-                    </div>
+                        </div>
                 </section>
                 
-                <!-- BOTÃO DE AGENDAMENTO (CHAMADA PARA AÇÃO) -->
                 <div class="text-center pt-2 pb-6">
-                    <!-- Linha divisória antes do CTA -->
-                    <hr class="border-gray-700 mb-6">
-                    <a id="whatsapp-link-modal" href="#" target="_blank"
-                        class="gold-btn inline-flex items-center justify-center px-8 py-4 rounded-full font-bold text-lg uppercase shadow-lg">
+                    <hr class="border-gray-800 mb-6">
+                    <a id="whatsapp-link-modal" href="https://studiols-agendamento.netlify.app/" target="_blank"
+                        class="yellow-btn inline-flex items-center justify-center px-8 py-4 rounded-full font-bold text-lg uppercase shadow-lg">
                         <i data-lucide="calendar-check" class="w-6 h-6 mr-3"></i>
                         AGENDAR AGORA
                     </a>
                 </div>
-                <!-- FIM DO BOTÃO -->
-
-                <!-- Seção 2: Produtos (Nova seção com imagens) -->
                 <section>
-                    <h3 class="text-2xl font-semibold mb-5 border-b pb-2 flex items-center" style="border-color: rgba(164, 141, 85, 0.4);">
-                        <i data-lucide="box" class="w-6 h-6 mr-3 inline-block" style="color: var(--primary-gold);"></i>
+                    <h3 class="text-2xl font-semibold mb-5 border-b pb-2 flex items-center" style="border-color: rgba(255, 215, 0, 0.4);">
+                        <i data-lucide="box" class="w-6 h-6 mr-3 inline-block" style="color: var(--primary-yellow);"></i>
                         PRODUTOS
                     </h3>
-                    <!-- Grid para exibir cards de produto lado a lado em mobile -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="products-list">
-                        <!-- Itens de produtos serão gerados aqui via JavaScript -->
-                    </div>
+                        </div>
                 </section>
 
-                <!-- Seção 3: Cervejas (Nova seção com imagens) -->
                 <section>
-                    <h3 class="text-2xl font-semibold mb-5 border-b pb-2 flex items-center" style="border-color: rgba(164, 141, 85, 0.4);">
-                        <i data-lucide="beer" class="w-6 h-6 mr-3 inline-block" style="color: var(--primary-gold);"></i>
+                    <h3 class="text-2xl font-semibold mb-5 border-b pb-2 flex items-center" style="border-color: rgba(255, 215, 0, 0.4);">
+                        <i data-lucide="beer" class="w-6 h-6 mr-3 inline-block" style="color: var(--primary-yellow);"></i>
                         CERVEJAS
                     </h3>
-                    <!-- Grid para exibir cards de cerveja lado a lado em mobile -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="beers-list">
-                        <!-- Itens de cervejas serão gerados aqui via JavaScript -->
-                    </div>
+                        </div>
                 </section>
                 
             </div>
-            <!-- Fim do Conteúdo de Preços -->
-
             <div class="text-center pt-10">
                 <button onclick="closePricesModal()" 
-                    class="gold-btn px-8 py-3 rounded-full font-bold text-base uppercase">
+                    class="yellow-btn px-8 py-3 rounded-full font-bold text-base uppercase">
                     Fechar Tabela
                 </button>
             </div>
@@ -299,12 +272,16 @@
         
         // 1. DADOS DE CONTATO E REDES SOCIAIS
         const barbershopName = "STUDIO LS";
-        // O número deve ser o completo: Código do País (55) + DDD (98) + Número (84367651)
+        // O link de agendamento é o novo URL, por isso o whatsappNumber não é usado para o link principal de agendamento
         const whatsappNumber = "559884367651"; 
         const mapLink = "https://maps.app.goo.gl/4ri4sobDrukmCrt67"; 
         
-        // AJUSTE: Link do Instagram Atualizado (Usando URL completa)
+        // Link do Instagram Atualizado
         const instagramLink = "https://www.instagram.com/studiols.ce?igsh=MWxmejNnZ294YWtpYg=="; 
+        
+        // NOVO LINK DE AGENDAMENTO (Substituindo o antigo WhatsApp URL)
+        const appointmentLink = "https://studiols-agendamento.netlify.app/";
+
 
         // 2. TABELA DE SERVIÇOS E PREÇOS 
         const SERVICES_DATA = [
@@ -333,33 +310,36 @@
 
         // Função para gerar o HTML de um item de SERVIÇO (lista)
         function generateServiceItem(item) {
-            const primaryGold = getComputedStyle(document.documentElement).getPropertyValue('--primary-gold').trim();
+            // Usando a nova variável de cor
+            const primaryYellow = getComputedStyle(document.documentElement).getPropertyValue('--primary-yellow').trim(); 
+            
             // Adicionando a classe de animação 'fade-in-up'
             return `
                 <div class="service-item fade-in-up">
                     <span class="text-lg font-medium">${item.name}</span>
-                    <span class="text-xl font-bold whitespace-nowrap" style="color: ${primaryGold};">${item.price}</span>
+                    <span class="text-xl font-bold whitespace-nowrap" style="color: ${primaryYellow};">${item.price}</span>
                 </div>
             `;
         }
         
         // Função para gerar o HTML de um item de PRODUTO/CERVEJA (card com imagem)
         function generateProductCard(item) {
-            const primaryGold = getComputedStyle(document.documentElement).getPropertyValue('--primary-gold').trim();
+            // Usando a nova variável de cor
+            const primaryYellow = getComputedStyle(document.documentElement).getPropertyValue('--primary-yellow').trim(); 
             const fallbackText = item.name.split(' ').slice(0, 2).join('+').toUpperCase();
             // O fallback usa o fundo escuro do card
-            const imgUrl = item.imageSrc || `https://placehold.co/180x180/1a1a1a/A48D55?text=IMAGEM`; 
+            const imgUrl = item.imageSrc || `https://placehold.co/180x180/111111/FFD700?text=IMAGEM`; 
             
             // Adicionando a classe de animação 'fade-in-up'
             return `
                 <div class="product-card fade-in-up">
                     <div class="product-image-container">
                         <img src="${imgUrl}" alt="${item.name}" 
-                             onerror="this.onerror=null; this.src='https://placehold.co/180x180/1a1a1a/A48D55?text=${fallbackText}';"
+                             onerror="this.onerror=null; this.src='https://placehold.co/180x180/111111/FFD700?text=${fallbackText}';"
                              title="${item.name}">
                     </div>
                     <span class="text-lg font-medium mt-2">${item.name}</span>
-                    <span class="text-xl font-bold whitespace-nowrap mt-1" style="color: ${primaryGold};">${item.price}</span>
+                    <span class="text-xl font-bold whitespace-nowrap mt-1" style="color: ${primaryYellow};">${item.price}</span>
                 </div>
             `;
         }
@@ -425,27 +405,18 @@
                 mainContainer.classList.add('initial-visible');
             }, 50);
 
-            // Mensagem pré-preenchida
-            const prefilledMessage = 
-                `Olá ${barbershopName}! Gostaria de agendar um horário.`;
-
-            // CRIAÇÃO DA URL FINAL
-            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(prefilledMessage)}`;
-
-            // Atualização de todos os links
-            document.getElementById('whatsapp-link').href = whatsappUrl;
+            // Atualização dos links:
+            // O link principal (AGENDAR HORÁRIO) e o link do modal (AGENDAR AGORA) usam o novo link de agendamento
+            document.getElementById('whatsapp-link').href = appointmentLink;
             document.getElementById('maps-link').href = mapLink; 
-            
-            // AJUSTE: Usando a variável com o link completo
             document.getElementById('instagram-link').href = instagramLink;
             
             const whatsappLinkModal = document.getElementById('whatsapp-link-modal');
             if (whatsappLinkModal) {
-                whatsappLinkModal.href = whatsappUrl; 
+                whatsappLinkModal.href = appointmentLink; 
             }
         });
 
     </script>
 </body>
 </html>
-
