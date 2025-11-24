@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STUDIO LS - Estilo e Qualidade</title>
+    <title>Links Essenciais</title> 
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* Variáveis de Cores ATUALIZADAS: Preto e Amarelo Forte */
+        /* Variáveis de Cores: Preto e Amarelo Forte */
         :root {
             --bg-dark: #000000; /* Preto Puro */
             --primary-yellow: #FFD700; /* Amarelo Forte / Ouro */
@@ -19,10 +19,44 @@
         }
 
         body {
-            /* Mudei a fonte para Poppins - Profissional e limpa */
             font-family: 'Poppins', sans-serif; 
             background-color: var(--bg-dark);
             color: var(--text-light);
+            /* Importante: Remova a cor de fundo do body para que o pseudo-elemento seja visível */
+            background-color: transparent; 
+            position: relative; /* Para posicionar o pseudo-elemento */
+            overflow-x: hidden; /* Evita scroll horizontal por causa da animação */
+        }
+
+        /* Novo estilo para o fundo animado */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%; /* Começa acima da tela */
+            left: -50%; /* Começa à esquerda da tela */
+            width: 200%; /* Largura para cobrir a tela e permitir movimento */
+            height: 200%; /* Altura para cobrir a tela e permitir movimento */
+            background: linear-gradient(
+                45deg,
+                var(--bg-dark) 0%,
+                rgba(255, 215, 0, 0.4) 25%, /* Amarelo com transparência */
+                var(--bg-dark) 50%,
+                rgba(255, 215, 0, 0.4) 75%,
+                var(--bg-dark) 100%
+            );
+            background-size: 200% 200%; /* Tamanho maior que a tela para permitir animação */
+            animation: moveGradient 15s ease infinite alternate; /* Animação mais lenta */
+            filter: blur(80px) brightness(1.2); /* Mais blur e brilho suave */
+            z-index: -1; /* Envia para o fundo */
+        }
+
+        @keyframes moveGradient {
+            0% {
+                background-position: 0% 0%; /* Início da animação */
+            }
+            100% {
+                background-position: 100% 100%; /* Fim da animação (movimento diagonal) */
+            }
         }
         
         /* Estilização padrão para o botão amarelo */
@@ -56,24 +90,7 @@
             transition: opacity 1s ease-out, transform 0.8s ease-out;
         }
         
-        /* Estilo para a imagem principal (Banner mais chamativo) */
-        .image-container {
-            width: 100%;
-            height: auto;
-            max-height: 400px;
-            overflow: hidden;
-            border-radius: 1.5rem; 
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4); /* Sombra amarela */
-            border: 3px solid var(--primary-yellow); /* Borda amarela */
-        }
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* Estilo para o item de PREÇO (SERVIÇOS) */
+        /* Estilo para o item de PREÇO (SERVIÇOS) - Mantido para o modal */
         .service-item {
             display: flex;
             justify-content: space-between;
@@ -81,10 +98,10 @@
             padding: 0.75rem 1rem;
             background-color: #1a1a1a;
             border-radius: 0.5rem;
-            border-left: 4px solid var(--primary-yellow); /* Cor de destaque */
+            border-left: 4px solid var(--primary-yellow); 
         }
         
-        /* Estilo para o item de PRODUTO/CERVEJA (card com imagem) */
+        /* Estilo para o item de PRODUTO/CERVEJA (card com imagem) - Mantido para o modal */
         .product-card {
             text-align: center;
             padding: 1rem;
@@ -99,7 +116,7 @@
             color: var(--text-light); 
         }
         
-        /* Contêiner da imagem dentro do card */
+        /* Contêiner da imagem dentro do card - Mantido para o modal */
         .product-image-container {
             width: 100%;
             max-width: 180px; 
@@ -145,63 +162,39 @@
 </head>
 <body class="min-h-screen flex items-start justify-center p-6 sm:p-8">
 
-    <div id="main-container" class="w-full max-w-sm mx-auto pt-10 pb-8 initial-hidden"> 
+    <div id="main-container" class="w-full max-w-sm mx-auto pt-8 pb-8 initial-hidden"> 
         
-        <header class="text-center mb-12">
-            
-            <div class="mb-3">
-                <img id="main-logo" src="./logo.png" alt="Logo STUDIO LS" 
-                     class="w-24 h-24 mx-auto rounded-full object-cover border-4 p-1"
-                     style="border-color: var(--primary-yellow);" 
-                     onerror="this.onerror=null; this.src='https://placehold.co/96x96/000000/FFD700?text=LOGO';"
-                     title="Logo STUDIO LS">
-            </div>
-            
-            <h1 class="text-4xl font-extrabold tracking-widest" style="color: var(--light-yellow-text);"> 
-                STUDIO LS
-            </h1>
-            <p class="text-base font-light uppercase mt-1 tracking-widest" style="color: var(--primary-yellow);">
-                ESTILO E QUALIDADE EM UM SÓ LUGAR
-            </p>
-        </header>
-
         <main id="main-actions" class="space-y-5"> 
+            
+            <h1 class="text-3xl font-bold text-center mb-8" style="color: var(--primary-yellow);">LINKS RÁPIDOS</h1>
 
             <a id="whatsapp-link" href="https://studiols-agendamento.netlify.app/" target="_blank"
-               class="yellow-btn w-full flex items-center justify-center p-3.5 rounded-full font-bold text-base uppercase shadow-lg">
-                <i data-lucide="calendar-check" class="w-5 h-5 mr-3"></i>
-                AGENDAR HORÁRIO
+               class="yellow-btn w-full flex items-center justify-center p-4 rounded-full font-bold text-lg uppercase shadow-lg">
+                <i data-lucide="calendar-check" class="w-6 h-6 mr-3"></i>
+                APP STUDIO LS
             </a>
 
             <a id="maps-link" href="#" target="_blank"
-               class="yellow-btn w-full flex items-center justify-center p-3.5 rounded-full font-bold text-base uppercase shadow-lg">
-                <i data-lucide="map-pin" class="w-5 h-5 mr-3"></i>
+               class="yellow-btn w-full flex items-center justify-center p-4 rounded-full font-bold text-lg uppercase shadow-lg">
+                <i data-lucide="map-pin" class="w-6 h-6 mr-3"></i>
                 COMO CHEGAR
             </a>
 
             <button onclick="openPricesModal()"
-                    class="yellow-btn w-full flex items-center justify-center p-3.5 rounded-full font-bold text-base uppercase shadow-lg">
-                <i data-lucide="book-open-text" class="w-5 h-5 mr-3"></i>
+                    class="yellow-btn w-full flex items-center justify-center p-4 rounded-full font-bold text-lg uppercase shadow-lg">
+                <i data-lucide="book-open-text" class="w-6 h-6 mr-3"></i>
                 SERVIÇOS E PREÇOS
             </button>
 
             <a id="instagram-link" href="#" target="_blank"
-               class="yellow-btn w-full flex items-center justify-center p-3.5 rounded-full font-bold text-base uppercase shadow-lg">
-                <i data-lucide="instagram" class="w-5 h-5 mr-3"></i>
+               class="yellow-btn w-full flex items-center justify-center p-4 rounded-full font-bold text-lg uppercase shadow-lg">
+                <i data-lucide="instagram" class="w-6 h-6 mr-3"></i>
                 INSTAGRAM
             </a>
 
         </main>
         
-        <section class="mt-12">
-            <div class="image-container">
-                <img src="./barber_shop.png" 
-                     onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/FFD700?text=Studio+LS+Ambiente';"
-                     alt="Imagem do ambiente interno da Studio LS Barbearia.">
-            </div>
-        </section>
-
-    </div>
+        </div>
 
     <div id="prices-modal" class="hidden fixed inset-0 z-50 bg-black bg-opacity-95 flex items-start justify-center p-4 overflow-y-auto">
         
@@ -272,18 +265,13 @@
         
         // 1. DADOS DE CONTATO E REDES SOCIAIS
         const barbershopName = "STUDIO LS";
-        // O link de agendamento é o novo URL, por isso o whatsappNumber não é usado para o link principal de agendamento
         const whatsappNumber = "559884367651"; 
         const mapLink = "https://maps.app.goo.gl/4ri4sobDrukmCrt67"; 
-        
-        // Link do Instagram Atualizado
         const instagramLink = "https://www.instagram.com/studiols.ce?igsh=MWxmejNnZ294YWtpYg=="; 
-        
-        // NOVO LINK DE AGENDAMENTO (Substituindo o antigo WhatsApp URL)
         const appointmentLink = "https://studiols-agendamento.netlify.app/";
 
 
-        // 2. TABELA DE SERVIÇOS E PREÇOS 
+        // 2. TABELA DE SERVIÇOS E PREÇOS (Dados mantidos)
         const SERVICES_DATA = [
             { name: "Corte Masculino", price: "R$ 15,00" },
             { name: "Corte + Pigmentação", price: "R$ 20,00" },
@@ -292,28 +280,26 @@
             { name: "Corte do Idoso", price: "R$ 10,00" },
         ];
 
-        // 3. PRODUTOS (Arquivos PNG devem estar na mesma pasta)
+        // 3. PRODUTOS (Dados mantidos)
         const PRODUCTS_DATA = [
             { name: "Pomada Fox Modeladora", price: "R$ 15,00", imageSrc: "./pomada_fox.png" }, 
         ];
         
-        // 4. CERVEJAS/BEBIDAS (Arquivos PNG devem estar na mesma pasta)
+        // 4. CERVEJAS/BEBIDAS (Dados mantidos)
         const BEERS_DATA = [
             { name: "Long neck CORONA", price: "R$ 10,00", imageSrc: "./corona.png" }, 
         ];
 
         // ----------------------------------------------------------------------
-        // LÓGICA DE GERAÇÃO E ANIMAÇÃO
+        // LÓGICA DE GERAÇÃO E ANIMAÇÃO (Mantida)
         // ----------------------------------------------------------------------
 
         const pricesModal = document.getElementById('prices-modal');
 
         // Função para gerar o HTML de um item de SERVIÇO (lista)
         function generateServiceItem(item) {
-            // Usando a nova variável de cor
             const primaryYellow = getComputedStyle(document.documentElement).getPropertyValue('--primary-yellow').trim(); 
             
-            // Adicionando a classe de animação 'fade-in-up'
             return `
                 <div class="service-item fade-in-up">
                     <span class="text-lg font-medium">${item.name}</span>
@@ -324,13 +310,10 @@
         
         // Função para gerar o HTML de um item de PRODUTO/CERVEJA (card com imagem)
         function generateProductCard(item) {
-            // Usando a nova variável de cor
             const primaryYellow = getComputedStyle(document.documentElement).getPropertyValue('--primary-yellow').trim(); 
             const fallbackText = item.name.split(' ').slice(0, 2).join('+').toUpperCase();
-            // O fallback usa o fundo escuro do card
             const imgUrl = item.imageSrc || `https://placehold.co/180x180/111111/FFD700?text=IMAGEM`; 
             
-            // Adicionando a classe de animação 'fade-in-up'
             return `
                 <div class="product-card fade-in-up">
                     <div class="product-image-container">
@@ -348,7 +331,6 @@
         function animateItems(listId) {
             const items = document.querySelectorAll(`#${listId} .fade-in-up`);
             items.forEach((item, index) => {
-                // Aplica um atraso crescente (50ms por item)
                 item.style.animationDelay = `${index * 50}ms`;
                 item.classList.add('animate');
             });
@@ -357,17 +339,14 @@
 
         // Função para preencher todas as listas do modal
         function renderPrices() {
-            // Limpa o conteúdo antes de renderizar
             document.getElementById('services-list').innerHTML = '';
             document.getElementById('products-list').innerHTML = '';
             document.getElementById('beers-list').innerHTML = '';
             
-            // Renderiza o HTML (neste ponto, eles estão invisíveis)
             document.getElementById('services-list').innerHTML = SERVICES_DATA.map(generateServiceItem).join('');
             document.getElementById('products-list').innerHTML = PRODUCTS_DATA.map(generateProductCard).join('');
             document.getElementById('beers-list').innerHTML = BEERS_DATA.map(generateProductCard).join('');
             
-            // Chama a animação para cada lista após a renderização
             animateItems('services-list');
             animateItems('products-list');
             animateItems('beers-list');
@@ -379,7 +358,6 @@
             pricesModal.classList.add('flex');
             document.body.style.overflow = 'hidden'; 
             
-            // Renderiza e anima quando o modal é aberto
             renderPrices(); 
         }
 
@@ -388,7 +366,6 @@
             pricesModal.classList.remove('flex');
             document.body.style.overflow = ''; 
             
-            // Remove a classe de animação para garantir que o modal abra limpo na próxima vez
             document.querySelectorAll('.fade-in-up').forEach(item => {
                 item.classList.remove('animate');
                 item.style.animationDelay = '';
@@ -405,8 +382,7 @@
                 mainContainer.classList.add('initial-visible');
             }, 50);
 
-            // Atualização dos links:
-            // O link principal (AGENDAR HORÁRIO) e o link do modal (AGENDAR AGORA) usam o novo link de agendamento
+            // Atualização dos links
             document.getElementById('whatsapp-link').href = appointmentLink;
             document.getElementById('maps-link').href = mapLink; 
             document.getElementById('instagram-link').href = instagramLink;
