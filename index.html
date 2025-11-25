@@ -22,42 +22,52 @@
             font-family: 'Poppins', sans-serif; 
             background-color: var(--bg-dark);
             color: var(--text-light);
-            /* Importante: Remova a cor de fundo do body para que o pseudo-elemento seja visível */
-            background-color: transparent; 
-            position: relative; /* Para posicionar o pseudo-elemento */
-            overflow-x: hidden; /* Evita scroll horizontal por causa da animação */
+            overflow-x: hidden; /* Evita rolagem lateral devido à animação */
+            position: relative;
         }
 
-        /* Novo estilo para o fundo animado */
-        body::before {
-            content: '';
+        /* --- NOVA ANIMAÇÃO DE FUNDO (Técnica de Blobs de Luz) --- */
+        .background-blob {
             position: fixed;
-            top: -50%; /* Começa acima da tela */
-            left: -50%; /* Começa à esquerda da tela */
-            width: 200%; /* Largura para cobrir a tela e permitir movimento */
-            height: 200%; /* Altura para cobrir a tela e permitir movimento */
-            background: linear-gradient(
-                45deg,
-                var(--bg-dark) 0%,
-                rgba(255, 215, 0, 0.4) 25%, /* Amarelo com transparência */
-                var(--bg-dark) 50%,
-                rgba(255, 215, 0, 0.4) 75%,
-                var(--bg-dark) 100%
-            );
-            background-size: 200% 200%; /* Tamanho maior que a tela para permitir animação */
-            animation: moveGradient 15s ease infinite alternate; /* Animação mais lenta */
-            filter: blur(80px) brightness(1.2); /* Mais blur e brilho suave */
-            z-index: -1; /* Envia para o fundo */
+            border-radius: 50%;
+            filter: blur(120px); /* Desfoque muito alto para criar o "brilho" */
+            z-index: -1; /* Fica atrás de tudo */
+            opacity: 0.5; /* Transparência para não ficar muito forte */
+            pointer-events: none; /* Garante que não interfira nos cliques */
         }
 
-        @keyframes moveGradient {
-            0% {
-                background-position: 0% 0%; /* Início da animação */
-            }
-            100% {
-                background-position: 100% 100%; /* Fim da animação (movimento diagonal) */
-            }
+        /* Luz Amarela Superior */
+        .blob-top {
+            top: -150px;
+            left: -150px;
+            width: 500px;
+            height: 500px;
+            background-color: var(--primary-yellow);
+            animation: moveTopBlob 25s infinite alternate ease-in-out;
         }
+
+        /* Luz Amarela Inferior (um pouco mais alaranjada para contraste) */
+        .blob-bottom {
+            bottom: -150px;
+            right: -150px;
+            width: 400px;
+            height: 400px;
+            background-color: #FFA500; /* Laranja/Dourado */
+            animation: moveBottomBlob 20s infinite alternate-reverse ease-in-out;
+        }
+
+        @keyframes moveTopBlob {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30vw, 40vh) scale(1.2); }
+        }
+
+        @keyframes moveBottomBlob {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-30vw, -30vh) scale(1.3); }
+        }
+        /* --- FIM DA NOVA ANIMAÇÃO --- */
+
+
         
         /* Estilização padrão para o botão amarelo */
         .yellow-btn {
@@ -162,7 +172,10 @@
 </head>
 <body class="min-h-screen flex items-start justify-center p-6 sm:p-8">
 
-    <div id="main-container" class="w-full max-w-sm mx-auto pt-8 pb-8 initial-hidden"> 
+    <div class="background-blob blob-top"></div>
+    <div class="background-blob blob-bottom"></div>
+
+    <div id="main-container" class="w-full max-w-sm mx-auto pt-8 pb-8 initial-hidden relative z-10"> 
         
         <main id="main-actions" class="space-y-5"> 
             
@@ -172,12 +185,6 @@
                class="yellow-btn w-full flex items-center justify-center p-4 rounded-full font-bold text-lg uppercase shadow-lg">
                 <i data-lucide="calendar-check" class="w-6 h-6 mr-3"></i>
                 APP STUDIO LS
-            </a>
-
-            <a id="maps-link" href="#" target="_blank"
-               class="yellow-btn w-full flex items-center justify-center p-4 rounded-full font-bold text-lg uppercase shadow-lg">
-                <i data-lucide="map-pin" class="w-6 h-6 mr-3"></i>
-                COMO CHEGAR
             </a>
 
             <button onclick="openPricesModal()"
@@ -256,22 +263,18 @@
     </div>
 
     <script>
-        // Inicializa os ícones Lucide
         lucide.createIcons();
 
         // ----------------------------------------------------------------------
-        //  *** CONFIGURAÇÃO DE DADOS REAIS - FINAL ***
+        //  *** CONFIGURAÇÃO DE DADOS REAIS ***
         // ----------------------------------------------------------------------
         
-        // 1. DADOS DE CONTATO E REDES SOCIAIS
-        const barbershopName = "STUDIO LS";
-        const whatsappNumber = "559884367651"; 
-        const mapLink = "https://maps.app.goo.gl/4ri4sobDrukmCrt67"; 
         const instagramLink = "https://www.instagram.com/studiols.ce?igsh=MWxmejNnZ294YWtpYg=="; 
         const appointmentLink = "https://studiols-agendamento.netlify.app/";
+        // Nota: mapLink foi removido pois o botão não existe mais.
 
 
-        // 2. TABELA DE SERVIÇOS E PREÇOS (Dados mantidos)
+        // TABELA DE SERVIÇOS E PREÇOS
         const SERVICES_DATA = [
             { name: "Corte Masculino", price: "R$ 15,00" },
             { name: "Corte + Pigmentação", price: "R$ 20,00" },
@@ -280,23 +283,22 @@
             { name: "Corte do Idoso", price: "R$ 10,00" },
         ];
 
-        // 3. PRODUTOS (Dados mantidos)
+        // PRODUTOS
         const PRODUCTS_DATA = [
             { name: "Pomada Fox Modeladora", price: "R$ 15,00", imageSrc: "./pomada_fox.png" }, 
         ];
         
-        // 4. CERVEJAS/BEBIDAS (Dados mantidos)
+        // CERVEJAS
         const BEERS_DATA = [
             { name: "Long neck CORONA", price: "R$ 10,00", imageSrc: "./corona.png" }, 
         ];
 
         // ----------------------------------------------------------------------
-        // LÓGICA DE GERAÇÃO E ANIMAÇÃO (Mantida)
+        // LÓGICA (MODAL E ANIMAÇÃO)
         // ----------------------------------------------------------------------
 
         const pricesModal = document.getElementById('prices-modal');
 
-        // Função para gerar o HTML de um item de SERVIÇO (lista)
         function generateServiceItem(item) {
             const primaryYellow = getComputedStyle(document.documentElement).getPropertyValue('--primary-yellow').trim(); 
             
@@ -308,7 +310,6 @@
             `;
         }
         
-        // Função para gerar o HTML de um item de PRODUTO/CERVEJA (card com imagem)
         function generateProductCard(item) {
             const primaryYellow = getComputedStyle(document.documentElement).getPropertyValue('--primary-yellow').trim(); 
             const fallbackText = item.name.split(' ').slice(0, 2).join('+').toUpperCase();
@@ -327,7 +328,6 @@
             `;
         }
         
-        // Função para aplicar a animação em cascata (item por item)
         function animateItems(listId) {
             const items = document.querySelectorAll(`#${listId} .fade-in-up`);
             items.forEach((item, index) => {
@@ -336,8 +336,6 @@
             });
         }
 
-
-        // Função para preencher todas as listas do modal
         function renderPrices() {
             document.getElementById('services-list').innerHTML = '';
             document.getElementById('products-list').innerHTML = '';
@@ -352,7 +350,6 @@
             animateItems('beers-list');
         }
         
-        // Lógica do Modal (Abrir/Fechar)
         function openPricesModal() {
             pricesModal.classList.remove('hidden');
             pricesModal.classList.add('flex');
@@ -372,19 +369,17 @@
             });
         }
 
-        // Lógica de Inicialização
         document.addEventListener('DOMContentLoaded', () => {
             const mainContainer = document.getElementById('main-container');
 
-            // Animação de entrada da Landing Page
             setTimeout(() => {
                 mainContainer.classList.remove('initial-hidden');
                 mainContainer.classList.add('initial-visible');
             }, 50);
 
-            // Atualização dos links
+            // Atualização dos links restantes
             document.getElementById('whatsapp-link').href = appointmentLink;
-            document.getElementById('maps-link').href = mapLink; 
+            // document.getElementById('maps-link').href = mapLink; // REMOVIDO
             document.getElementById('instagram-link').href = instagramLink;
             
             const whatsappLinkModal = document.getElementById('whatsapp-link-modal');
