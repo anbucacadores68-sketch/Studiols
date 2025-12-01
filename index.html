@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Links Essenciais - Studio LS</title> 
+    <title>Links Essenciais</title> 
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     
@@ -22,20 +22,21 @@
             font-family: 'Poppins', sans-serif; 
             background-color: var(--bg-dark);
             color: var(--text-light);
-            overflow-x: hidden;
+            overflow-x: hidden; /* Evita rolagem lateral devido à animação */
             position: relative;
         }
 
-        /* --- ANIMAÇÃO DE FUNDO (Blobs de Luz) --- */
+        /* --- NOVA ANIMAÇÃO DE FUNDO (Técnica de Blobs de Luz) --- */
         .background-blob {
             position: fixed;
             border-radius: 50%;
-            filter: blur(120px);
-            z-index: -1;
-            opacity: 0.5;
-            pointer-events: none;
+            filter: blur(120px); /* Desfoque muito alto para criar o "brilho" */
+            z-index: -1; /* Fica atrás de tudo */
+            opacity: 0.5; /* Transparência para não ficar muito forte */
+            pointer-events: none; /* Garante que não interfira nos cliques */
         }
 
+        /* Luz Amarela Superior */
         .blob-top {
             top: -150px;
             left: -150px;
@@ -45,12 +46,13 @@
             animation: moveTopBlob 25s infinite alternate ease-in-out;
         }
 
+        /* Luz Amarela Inferior (um pouco mais alaranjada para contraste) */
         .blob-bottom {
             bottom: -150px;
             right: -150px;
             width: 400px;
             height: 400px;
-            background-color: #FFA500;
+            background-color: #FFA500; /* Laranja/Dourado */
             animation: moveBottomBlob 20s infinite alternate-reverse ease-in-out;
         }
 
@@ -63,16 +65,17 @@
             0% { transform: translate(0, 0) scale(1); }
             100% { transform: translate(-30vw, -30vh) scale(1.3); }
         }
+        /* --- FIM DA NOVA ANIMAÇÃO --- */
 
+
+        
         /* Estilização padrão para o botão amarelo */
         .yellow-btn {
             background-color: var(--primary-yellow);
-            color: var(--bg-dark);
+            color: var(--bg-dark); /* Texto preto */
             transition: all 0.2s ease-in-out; 
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.6), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
             -webkit-tap-highlight-color: transparent;
-            cursor: pointer;
-            border: none;
         }
 
         .yellow-btn:hover {
@@ -80,11 +83,13 @@
             transform: translateY(-2px);
         }
         
+        /* Efeito de clique/toque ATIVO */
         .yellow-btn:active {
             transform: scale(0.98); 
             box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.7), 0 1px 2px -1px rgba(0, 0, 0, 0.4);
         }
 
+        /* Animação de entrada da Landing Page */
         .initial-hidden {
             opacity: 0;
             transform: translateY(20px);
@@ -95,7 +100,7 @@
             transition: opacity 1s ease-out, transform 0.8s ease-out;
         }
         
-        /* Modal Styles */
+        /* Estilo para o item de PREÇO (SERVIÇOS) - Mantido para o modal */
         .service-item {
             display: flex;
             justify-content: space-between;
@@ -106,6 +111,7 @@
             border-left: 4px solid var(--primary-yellow); 
         }
         
+        /* Estilo para o item de PRODUTO/CERVEJA (card com imagem) - Mantido para o modal */
         .product-card {
             text-align: center;
             padding: 1rem;
@@ -120,6 +126,7 @@
             color: var(--text-light); 
         }
         
+        /* Contêiner da imagem dentro do card - Mantido para o modal */
         .product-image-container {
             width: 100%;
             max-width: 180px; 
@@ -140,13 +147,26 @@
             margin: auto; 
         }
 
+        /* --- ANIMAÇÃO PARA OS ITENS DO MODAL --- */
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .fade-in-up { opacity: 0; }
-        .fade-in-up.animate { animation: fadeInUp 0.5s ease-out forwards; }
+        .fade-in-up {
+            opacity: 0;
+        }
+        
+        /* A classe 'animate' será adicionada via JavaScript */
+        .fade-in-up.animate {
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
 
     </style>
 </head>
@@ -161,11 +181,11 @@
             
             <h1 class="text-3xl font-bold text-center mb-8" style="color: var(--primary-yellow);">LINKS RÁPIDOS</h1>
 
-            <button onclick="openMaintenanceModal()"
+            <a id="whatsapp-link" href="https://studiols-agendamento.netlify.app/" target="_blank"
                class="yellow-btn w-full flex items-center justify-center p-4 rounded-full font-bold text-lg uppercase shadow-lg">
-                <i data-lucide="calendar-off" class="w-6 h-6 mr-3"></i>
+                <i data-lucide="calendar-check" class="w-6 h-6 mr-3"></i>
                 APP STUDIO LS
-            </button>
+            </a>
 
             <button onclick="openPricesModal()"
                     class="yellow-btn w-full flex items-center justify-center p-4 rounded-full font-bold text-lg uppercase shadow-lg">
@@ -181,9 +201,10 @@
 
         </main>
         
-    </div>
+        </div>
 
     <div id="prices-modal" class="hidden fixed inset-0 z-50 bg-black bg-opacity-95 flex items-start justify-center p-4 overflow-y-auto">
+        
         <div class="w-full max-w-xl mx-auto my-8 p-6 sm:p-8 rounded-xl shadow-2xl relative" style="background-color: #111111;">
             <button onclick="closePricesModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition duration-200">
                 <i data-lucide="x" class="w-8 h-8"></i>
@@ -194,29 +215,31 @@
             </h2>
 
             <div id="prices-content" class="space-y-10">
+                
                 <section>
                     <h3 class="text-2xl font-semibold mb-5 border-b pb-2 flex items-center" style="border-color: rgba(255, 215, 0, 0.4);">
                         <i data-lucide="scissors" class="w-6 h-6 mr-3 inline-block" style="color: var(--primary-yellow);"></i>
                         SERVIÇOS
                     </h3>
-                    <div class="space-y-3" id="services-list"></div>
+                    <div class="space-y-3" id="services-list">
+                        </div>
                 </section>
                 
                 <div class="text-center pt-2 pb-6">
                     <hr class="border-gray-800 mb-6">
-                    <button onclick="openMaintenanceModal()"
+                    <a id="whatsapp-link-modal" href="https://studiols-agendamento.netlify.app/" target="_blank"
                         class="yellow-btn inline-flex items-center justify-center px-8 py-4 rounded-full font-bold text-lg uppercase shadow-lg">
-                        <i data-lucide="calendar-off" class="w-6 h-6 mr-3"></i>
+                        <i data-lucide="calendar-check" class="w-6 h-6 mr-3"></i>
                         AGENDAR AGORA
-                    </button>
+                    </a>
                 </div>
-
                 <section>
                     <h3 class="text-2xl font-semibold mb-5 border-b pb-2 flex items-center" style="border-color: rgba(255, 215, 0, 0.4);">
                         <i data-lucide="box" class="w-6 h-6 mr-3 inline-block" style="color: var(--primary-yellow);"></i>
                         PRODUTOS
                     </h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="products-list"></div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="products-list">
+                        </div>
                 </section>
 
                 <section>
@@ -224,8 +247,10 @@
                         <i data-lucide="beer" class="w-6 h-6 mr-3 inline-block" style="color: var(--primary-yellow);"></i>
                         CERVEJAS
                     </h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="beers-list"></div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="beers-list">
+                        </div>
                 </section>
+                
             </div>
             <div class="text-center pt-10">
                 <button onclick="closePricesModal()" 
@@ -233,43 +258,23 @@
                     Fechar Tabela
                 </button>
             </div>
-        </div>
-    </div>
 
-    <div id="maintenance-modal" class="hidden fixed inset-0 z-[60] bg-black/95 flex items-center justify-center p-4">
-        <div class="bg-[#111111] p-8 rounded-2xl border-2 border-[#FFD700] text-center max-w-sm w-full shadow-[0_0_30px_rgba(255,215,0,0.3)] relative">
-            
-            <button onclick="closeMaintenanceModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition duration-200">
-                <i data-lucide="x" class="w-6 h-6"></i>
-            </button>
-
-            <div class="flex justify-center mb-6">
-                <div class="p-4 rounded-full bg-yellow-500/10">
-                    <i data-lucide="triangle-alert" class="w-16 h-16 text-[#FFD700]"></i>
-                </div>
-            </div>
-            
-            <h2 class="text-2xl font-bold text-[#FFD700] mb-2 uppercase">Sistema em Manutenção</h2>
-            
-            <p class="text-gray-300 mb-6">
-                Estamos atualizando o aplicativo <strong>Studio LS</strong> para trazer novas funcionalidades.
-                <br><br>
-                O agendamento online está temporariamente indisponível.
-            </p>
-            
-            <button onclick="closeMaintenanceModal()" class="w-full yellow-btn py-3 rounded-full font-bold uppercase">
-                Entendido
-            </button>
         </div>
     </div>
 
     <script>
         lucide.createIcons();
 
-        // DADOS REAIS
+        // ----------------------------------------------------------------------
+        //  *** CONFIGURAÇÃO DE DADOS REAIS ***
+        // ----------------------------------------------------------------------
+        
         const instagramLink = "https://www.instagram.com/studiols.ce?igsh=MWxmejNnZ294YWtpYg=="; 
+        const appointmentLink = "https://studiols-agendamento.netlify.app/";
+        // Nota: mapLink foi removido pois o botão não existe mais.
 
-        // TABELA DE DADOS
+
+        // TABELA DE SERVIÇOS E PREÇOS
         const SERVICES_DATA = [
             { name: "Corte Masculino", price: "R$ 15,00" },
             { name: "Corte + Pigmentação", price: "R$ 20,00" },
@@ -277,20 +282,26 @@
             { name: "Combo Corte + Barba + Sobrancelha", price: "R$ 20,00" }, 
             { name: "Corte do Idoso", price: "R$ 10,00" },
         ];
+
+        // PRODUTOS
         const PRODUCTS_DATA = [
             { name: "Pomada Fox Modeladora", price: "R$ 15,00", imageSrc: "./pomada_fox.png" }, 
         ];
+        
+        // CERVEJAS
         const BEERS_DATA = [
             { name: "Long neck CORONA", price: "R$ 10,00", imageSrc: "./corona.png" }, 
         ];
 
-        // REFERÊNCIAS DOM
-        const pricesModal = document.getElementById('prices-modal');
-        const maintenanceModal = document.getElementById('maintenance-modal');
+        // ----------------------------------------------------------------------
+        // LÓGICA (MODAL E ANIMAÇÃO)
+        // ----------------------------------------------------------------------
 
-        // FUNÇÕES MODAL PREÇOS
+        const pricesModal = document.getElementById('prices-modal');
+
         function generateServiceItem(item) {
             const primaryYellow = getComputedStyle(document.documentElement).getPropertyValue('--primary-yellow').trim(); 
+            
             return `
                 <div class="service-item fade-in-up">
                     <span class="text-lg font-medium">${item.name}</span>
@@ -326,6 +337,10 @@
         }
 
         function renderPrices() {
+            document.getElementById('services-list').innerHTML = '';
+            document.getElementById('products-list').innerHTML = '';
+            document.getElementById('beers-list').innerHTML = '';
+            
             document.getElementById('services-list').innerHTML = SERVICES_DATA.map(generateServiceItem).join('');
             document.getElementById('products-list').innerHTML = PRODUCTS_DATA.map(generateProductCard).join('');
             document.getElementById('beers-list').innerHTML = BEERS_DATA.map(generateProductCard).join('');
@@ -339,6 +354,7 @@
             pricesModal.classList.remove('hidden');
             pricesModal.classList.add('flex');
             document.body.style.overflow = 'hidden'; 
+            
             renderPrices(); 
         }
 
@@ -353,26 +369,6 @@
             });
         }
 
-        // --- NOVAS FUNÇÕES PARA O MODAL DE MANUTENÇÃO ---
-        function openMaintenanceModal() {
-            // Se estiver com o modal de preços aberto, fecha ele primeiro ou sobrepõe
-            // Vamos apenas abrir por cima (z-index cuida disso)
-            maintenanceModal.classList.remove('hidden');
-            maintenanceModal.classList.add('flex');
-            // Garante que o scroll continue travado se veio do modal de preços, ou trava agora
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeMaintenanceModal() {
-            maintenanceModal.classList.add('hidden');
-            maintenanceModal.classList.remove('flex');
-            
-            // Se o modal de preços NÃO estiver aberto, libera o scroll
-            if (pricesModal.classList.contains('hidden')) {
-                document.body.style.overflow = '';
-            }
-        }
-
         document.addEventListener('DOMContentLoaded', () => {
             const mainContainer = document.getElementById('main-container');
 
@@ -381,8 +377,15 @@
                 mainContainer.classList.add('initial-visible');
             }, 50);
 
-            // Atualiza apenas o Instagram, pois os outros botões agora são triggers de modal
+            // Atualização dos links restantes
+            document.getElementById('whatsapp-link').href = appointmentLink;
+            // document.getElementById('maps-link').href = mapLink; // REMOVIDO
             document.getElementById('instagram-link').href = instagramLink;
+            
+            const whatsappLinkModal = document.getElementById('whatsapp-link-modal');
+            if (whatsappLinkModal) {
+                whatsappLinkModal.href = appointmentLink; 
+            }
         });
 
     </script>
